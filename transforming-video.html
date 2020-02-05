@@ -31,7 +31,7 @@
   </nav>
 
   <div id="stage">
-    <video>
+    <video id="videoElement">
       <source src="http://www.archive.org/download/AnimatedMechanicalArtPiecesAtMit/P1120973_512kb.mp4" type="video/mp4">         
       <source src="http://www.archive.org/download/AnimatedMechanicalArtPiecesAtMit/P1120973.ogv" type="video/ogg">         
         <p>Your browser doesn't support the HTML5 video tag it seems. 
@@ -47,6 +47,18 @@
     <img src="html5-badge-h-css3-multimedia-semantics.png" width="197" height="64" alt="HTML5 Powered with CSS3 / Styling, Multimedia, and Semantics" title="HTML5 Powered with CSS3 / Styling, Multimedia, and Semantics"></a></span>
   </footer>
   </div>
+  <script>
+    var video = document.querySelector("#videoElement");
+    if (navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function (stream) {
+          video.srcObject = stream;
+        })
+        .catch(function (err0r) {
+          console.log("Something went wrong!");
+        });
+    }    
+  </script>
   <script src="transformvideo.js"></script>
 </body>
 </html>
